@@ -34,6 +34,7 @@ btn.addEventListener("click", () => {
     play();
     typeArea.value = "";
     typeArea.disabled = false;
+    typeArea.focus();
   } else if (btn.textContent === "Done") {
     typeArea.disabled = true;
     main.style.borderColor = "white";
@@ -58,7 +59,8 @@ function end() {
   game.user = typeArea.value;
   const correct = results();
   main.style.borderColor = "white";
-  main.innerHTML = `Time: ${totalTime} Score: ${correct.score} out of ${correct.total}`;
+  const wpm = Math.round((game.user.split(" ").length / totalTime) * 60);
+  main.innerHTML = `Time: ${totalTime}s | WPM: ${wpm} | Score: ${correct.score}/${correct.total}`;
   btn.textContent = "Start";
 }
 

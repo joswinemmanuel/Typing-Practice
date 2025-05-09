@@ -42,17 +42,45 @@ btn.addEventListener("click", () => {
   }
 });
 
+typeArea.addEventListener("input", highlightCurrentWord);
+
 function play() {
   let randText = Math.floor(Math.random() * words.length);
-  main.textContent = words[randText];
-  game.arrText = words[randText];
+  game.arrText = words[randText].split(" "); // Save as array
+  main.innerHTML = game.arrText.map(word => `<span>${word}</span>`).join(" ");
   main.style.borderColor = "#c8c8c8";
   btn.textContent = "Done";
   const duration = new Date();
-  game.start = duration.getTime(); // unix timestamp
+  game.start = duration.getTime();
 }
 
+function highlightCurrentWord() {
+  const userWords = typeArea.value.trim().split(" ");
+  const spans = main.querySelectorAll("span");
+
+  spans.forEach((span, idx) => {
+    span.className = ""; // Reset class
+    if (idx < userWords.length) {
+      if (userWords[idx] === game.arrText[idx]) {
+        span.classList.add("correct");
+      } else {
+        span.classList.add("incorrect");
+      }
+    }
+    if (idx === userWords.length) {
+      span.classList.add("current");
+    }
+  });
+}
+
+
 function end() {
+  if (!typeArea.value.trim()) {
+    main.innerHTML = `<span style="color: red;">Please type something before clicking Done!</span>`;
+    btn.textContent = "Start";
+    return;
+  }
+  
   const duration = new Date();
   game.end = duration.getTime();
   const totalTime = (game.end - game.start) / 1000;
@@ -65,8 +93,8 @@ function end() {
 }
 
 function results() {
-  let valueOne = game.arrText.split(" ");
-  let valueTwo = game.user.split(" ");
+  let valueOne = game.arrText; // already an array
+  let valueTwo = game.user.trim().split(" ");
   let score = 0;
   valueOne.forEach((word, idx) => {
     if (word === valueTwo[idx]) {

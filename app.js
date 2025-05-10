@@ -37,7 +37,6 @@ btn.addEventListener("click", () => {
     typeArea.focus();
   } else if (btn.textContent === "Done") {
     typeArea.disabled = true;
-    main.style.borderColor = "white";
     end();
   }
 });
@@ -46,9 +45,8 @@ typeArea.addEventListener("input", highlightCurrentWord);
 
 function play() {
   let randText = Math.floor(Math.random() * words.length);
-  game.arrText = words[randText].split(" "); // Save as array
+  game.arrText = words[randText].split(" ");
   main.innerHTML = game.arrText.map(word => `<span>${word}</span>`).join(" ");
-  main.style.borderColor = "#c8c8c8";
   btn.textContent = "Done";
   const duration = new Date();
   game.start = duration.getTime();
@@ -73,27 +71,25 @@ function highlightCurrentWord() {
   });
 }
 
-
 function end() {
   if (!typeArea.value.trim()) {
-    main.innerHTML = `<span style="color: red;">Please type something before clicking Done!</span>`;
+    main.innerHTML = `<span style="color:red;">Please type something before clicking Done!</span>`;
     btn.textContent = "Start";
     return;
   }
-  
+
   const duration = new Date();
   game.end = duration.getTime();
   const totalTime = (game.end - game.start) / 1000;
   game.user = typeArea.value;
   const correct = results();
-  main.style.borderColor = "white";
   const wpm = Math.round((game.user.split(" ").length / totalTime) * 60);
   main.innerHTML = `Time: ${totalTime}s | WPM: ${wpm} | Score: ${correct.score}/${correct.total}`;
   btn.textContent = "Start";
 }
 
 function results() {
-  let valueOne = game.arrText; // already an array
+  let valueOne = game.arrText;
   let valueTwo = game.user.trim().split(" ");
   let score = 0;
   valueOne.forEach((word, idx) => {
@@ -104,3 +100,10 @@ function results() {
 
   return { score, total: valueOne.length };
 }
+
+
+const themeToggle = document.querySelector(".theme-toggle");
+
+themeToggle.addEventListener("click", () => {
+  document.documentElement.classList.toggle("light");
+});

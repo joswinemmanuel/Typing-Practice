@@ -1,72 +1,3 @@
-/* body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-family: "Edu AU VIC WA NT Arrows", cursive;
-}
-
-.container {
-  width: 70%;
-  padding: 10px;
-  font-family: "Edu AU VIC WA NT Arrows", cursive;
-}
-
-.main {
-  text-align: center;
-  padding: 10px;
-  font-size: 2em;
-  border: 3px solid white;
-  font-family: "Edu AU VIC WA NT Arrows", cursive;
-}
-
-.typingArea {
-  width: 100%;
-  height: 350px;
-  margin-top: 20px;
-  font-size: 1.5em;
-  transition: all 0.3s ease;
-  font-family: "Edu AU VIC WA NT Arrows", cursive;
-}
-
-.typingArea:hover {
-  border: 1px solid black;
-}
-
-.btn {
-  width: 20%;
-  outline: none;
-  border: none;
-  font-size: 2em;
-  padding: 10px;
-  color: white;
-  background-color: blueviolet;
-  border-radius: 5px;
-  margin-top: 20px;
-  transition: all 0.5s ease;
-  font-family: "Edu AU VIC WA NT Arrows", cursive;
-}
-
-.btn:hover {
-  transform: scale(1.1);
-}
-
-.correct {
-  background-color: #d4edda;
-  color: #155724;
-}
-
-.incorrect {
-  background-color: #f8d7da;
-  color: #721c24;
-}
-
-.current {
-  background-color: #fff3cd;
-  color: #856404;
-} */
-
-
 /* Reset */
 * {
   margin: 0;
@@ -164,7 +95,79 @@ body {
   border-radius: 4px;
 }
 
-.incorrect {
-  color: #ff6b6b;
-  font-weight: bold;
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #444;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1em;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: #666;
+}
+
+
+/********** Light Theme ************/
+
+.theme-toggle:hover {
+  background: #666;
+}
+
+/* LIGHT THEME */
+.light body {
+  background-color: #f0f0f0;
+  color: #121212;
+}
+
+.light .container {
+  background-color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.light .main {
+  background-color: #fafafa;
+  border: 1px solid #ccc;
+  border-color: #ccc;
+}
+
+.light .typingArea {
+  background-color: #ffffff;
+  color: #000;
+  border-color: #ccc;
+}
+
+.light .typingArea:focus {
+  border: 1px solid #888;
+}
+
+.light .btn {
+  background: linear-gradient(135deg, #363636, #404040);
+}
+
+.light .btn:hover {
+  background: linear-gradient(135deg, #505050, #5a5a5a);
+}
+
+.light .correct {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.light .incorrect {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.light .current {
+  background-color: #fff3cd;
+  color: #856404;
 }

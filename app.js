@@ -59,7 +59,7 @@ function highlightCurrentWord() {
   const spans = main.querySelectorAll("span");
 
   spans.forEach((span, idx) => {
-    span.className = ""; // Reset class
+    span.className = "";
     if (idx < userWords.length) {
       if (userWords[idx] === game.arrText[idx]) {
         span.classList.add("correct");

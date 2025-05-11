@@ -27,6 +27,16 @@ btn.addEventListener("click", () => {
 
 typeArea.addEventListener("input", highlightCurrentWord);
 
+typeArea.addEventListener("keydown", (e) => {
+  console.log("Enter Pressed");
+  if (e.key === "Enter" && btn.textContent === "Done") {
+    console.log("Going to submit");
+    e.preventDefault();
+    typeArea.disabled = true;
+    end();
+  }
+})
+
 async function getQuoteText() {
   const res = await fetch("https://dummyjson.com/quotes/random");
   const data = await res.json();

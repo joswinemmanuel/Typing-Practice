@@ -73,7 +73,7 @@ function highlightCurrentWord() {
 
 function end() {
   if (!typeArea.value.trim()) {
-    main.innerHTML = `<span style="color:red;">Please type something before clicking Done!</span>`;
+    main.innerHTML = `<span style="color: tomato; font-weight: bold;">Please type something before clicking Done!</span>`;
     btn.textContent = "Start";
     return;
   }
@@ -84,7 +84,14 @@ function end() {
   game.user = typeArea.value;
   const correct = results();
   const wpm = Math.round((game.user.split(" ").length / totalTime) * 60);
-  main.innerHTML = `Time: ${totalTime}s | WPM: ${wpm} | Score: ${correct.score}/${correct.total}`;
+  main.innerHTML = `Time: ${totalTime}s | WPM: ${wpm} | Score: ${correct.score}/${correct.total}<br>`;
+  if (correct.score === correct.total) {
+    main.innerHTML += `<br><span style="color: lightgreen; font-weight: bold;">Well Done!!! Perfect Accuracy</span>`;
+  } else if (correct.score >= (correct.total / 2)) {
+    main.innerHTML += `<br><span style="color: gold; font-weight: bold;">Good!! Accuracy is improving</span>`;
+  } else {
+    main.innerHTML += `<br><span style="color: tomato; font-weight: bold;">Improve your accuracy!</span>`;
+  }
   btn.textContent = "Start";
 }
 

@@ -1,31 +1,11 @@
 import { faker } from '@faker-js/faker';
 import './style.css';
 
-
 const main = document.querySelector(".main");
 const typeArea = document.querySelector(".typingArea");
 const btn = document.querySelector(".btn");
 
 typeArea.disabled = true;
-
-const words = [
-  "A day in the life of programmer",
-  "What is JavaScript?",
-  "What is React?",
-  "What is Programming Language?",
-  "What's your name?",
-  "Where are you from?",
-  "This is just random word",
-  "What is Remix.js?",
-  "New Technologies",
-  "Is programming hard?",
-  "Why do you wanna become a programmer?",
-  "Which programming language you like the most?",
-  "What is Golang? and why do you wanna learn it?",
-  "What is CSS?",
-  "What makes Python so special?"
-];
-
 
 const game = {
   start: 0,
@@ -33,10 +13,6 @@ const game = {
   user: "",
   arrText: "",
 };
-
-const paragraph = faker.lorem.paragraph();
-console.log(paragraph);
-
 
 btn.addEventListener("click", () => {
   if (btn.textContent === "Start") {
@@ -52,18 +28,8 @@ btn.addEventListener("click", () => {
 
 typeArea.addEventListener("input", highlightCurrentWord);
 
-// function play() {
-//   let randText = Math.floor(Math.random() * words.length);
-//   game.arrText = words[randText].split(" ");
-//   main.innerHTML = game.arrText.map(word => `<span>${word}</span>`).join(" ");
-//   btn.textContent = "Done";
-//   const duration = new Date();
-//   game.start = duration.getTime();
-// }
-
 function play() {
-  console.log("Hello");
-  const randomText = faker.lorem.paragraph();
+  const randomText = faker.lorem.sentences(5);
   game.arrText = randomText.split(" ");
   main.innerHTML = game.arrText.map(word => `<span>${word}</span>`).join(" ");
   btn.textContent = "Done";

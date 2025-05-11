@@ -1,3 +1,7 @@
+import { faker } from '@faker-js/faker';
+import './style.css';
+
+
 const main = document.querySelector(".main");
 const typeArea = document.querySelector(".typingArea");
 const btn = document.querySelector(".btn");
@@ -22,8 +26,6 @@ const words = [
   "What makes Python so special?"
 ];
 
-// const randomText = faker.lorem.paragraph();
-// game.arrText = randomText.split(" ");
 
 const game = {
   start: 0,
@@ -31,6 +33,10 @@ const game = {
   user: "",
   arrText: "",
 };
+
+const paragraph = faker.lorem.paragraph();
+console.log(paragraph);
+
 
 btn.addEventListener("click", () => {
   if (btn.textContent === "Start") {
@@ -46,24 +52,24 @@ btn.addEventListener("click", () => {
 
 typeArea.addEventListener("input", highlightCurrentWord);
 
-function play() {
-  let randText = Math.floor(Math.random() * words.length);
-  game.arrText = words[randText].split(" ");
-  main.innerHTML = game.arrText.map(word => `<span>${word}</span>`).join(" ");
-  btn.textContent = "Done";
-  const duration = new Date();
-  game.start = duration.getTime();
-}
-
 // function play() {
-//   const randomText = faker.lorem.paragraph();
-//   game.arrText = randomText.split(" ");
+//   let randText = Math.floor(Math.random() * words.length);
+//   game.arrText = words[randText].split(" ");
 //   main.innerHTML = game.arrText.map(word => `<span>${word}</span>`).join(" ");
 //   btn.textContent = "Done";
 //   const duration = new Date();
 //   game.start = duration.getTime();
 // }
 
+function play() {
+  console.log("Hello");
+  const randomText = faker.lorem.paragraph();
+  game.arrText = randomText.split(" ");
+  main.innerHTML = game.arrText.map(word => `<span>${word}</span>`).join(" ");
+  btn.textContent = "Done";
+  const duration = new Date();
+  game.start = duration.getTime();
+}
 
 function highlightCurrentWord() {
   const userWords = typeArea.value.trim().split(" ");

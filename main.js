@@ -1,4 +1,3 @@
-import { faker } from '@faker-js/faker';
 import './style.css';
 
 const main = document.querySelector(".main");
@@ -28,9 +27,15 @@ btn.addEventListener("click", () => {
 
 typeArea.addEventListener("input", highlightCurrentWord);
 
-function play() {
-  const randomText = faker.lorem.sentences(5);
-  game.arrText = randomText.split(" ");
+async function getQuoteText() {
+  const res = await fetch("https://dummyjson.com/quotes/random");
+  const data = await res.json();
+  return data.quote;
+}
+
+async function play() {
+  const paragraph = await getQuoteText();
+  game.arrText = paragraph.split(" ");
   main.innerHTML = game.arrText.map(word => `<span>${word}</span>`).join(" ");
   btn.textContent = "Done";
   const duration = new Date();

@@ -22,6 +22,9 @@ const words = [
   "What makes Python so special?"
 ];
 
+// const randomText = faker.lorem.paragraph();
+// game.arrText = randomText.split(" ");
+
 const game = {
   start: 0,
   end: 0,
@@ -51,6 +54,16 @@ function play() {
   const duration = new Date();
   game.start = duration.getTime();
 }
+
+// function play() {
+//   const randomText = faker.lorem.paragraph();
+//   game.arrText = randomText.split(" ");
+//   main.innerHTML = game.arrText.map(word => `<span>${word}</span>`).join(" ");
+//   btn.textContent = "Done";
+//   const duration = new Date();
+//   game.start = duration.getTime();
+// }
+
 
 function highlightCurrentWord() {
   const userWords = typeArea.value.trim().split(" ");

@@ -85,13 +85,25 @@ function end() {
   const correct = results();
   const wpm = Math.round((game.user.split(" ").length / totalTime) * 60);
   main.innerHTML = `Time: ${totalTime}s | WPM: ${wpm} | Score: ${correct.score}/${correct.total}<br>`;
+
   if (correct.score === correct.total) {
     main.innerHTML += `<br><span style="color: lightgreen; font-weight: bold;">Well Done!!! Perfect Accuracy</span>`;
   } else if (correct.score >= (correct.total / 2)) {
     main.innerHTML += `<br><span style="color: gold; font-weight: bold;">Good!! Accuracy is improving</span>`;
   } else {
-    main.innerHTML += `<br><span style="color: tomato; font-weight: bold;">Improve your accuracy!</span>`;
+    main.innerHTML += `<br><span style="color: red; font-weight: bold;">Improve your accuracy!</span>`;
   }
+
+  if (wpm >= 60) {
+    main.innerHTML += `<br><span style="color: lightgreen; font-weight: bold;">Blazing Fast!!!</span>`;
+  } else if (wpm >= 40) {
+    main.innerHTML += `<br><span style="color: gold; font-weight: bold;">Great Speed!!</span>`;
+  } else if (wpm >= 20) {
+    main.innerHTML += `<br><span style="color: tomato; font-weight: bold;">Decent Speed!</span>`;
+  } else {
+    main.innerHTML += `<br><span style="color: red; font-weight: bold;">Try to increase your speed!</span>`;
+  }
+
   btn.textContent = "Start";
 }
 

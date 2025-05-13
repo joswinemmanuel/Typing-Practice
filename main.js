@@ -120,7 +120,6 @@ function results() {
   return { score, total: valueOne.length };
 }
 
-
 const themeToggle = document.querySelector(".theme-toggle");
 
 themeToggle.addEventListener("click", () => {
